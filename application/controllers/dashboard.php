@@ -80,8 +80,32 @@ class dashboard extends CI_Controller
     }
     public function i_keluar()
     {
-        $data['judul'] = "Barang Keluar";
-        manggil_view('dashboard/i_keluar', $data);
+        $this->form_validation->set_rules('tgl_keluar', 'Tanggal Keluar', 'trim|required', ['required' => "Harus diisi"]);
+        //$this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('tujuan', 'Tujuan / Posko', 'trim|required', ['required' => "Harus diisi"]);
+        //$this->form_validation->set_rules('tgl_exp', 'Tanggal Expired', 'trim');
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Barang Keluar";
+            manggil_view('dashboard/i_keluar', $data);
+        } else {
+            $data['judul'] = "Tambah Barang";
+            manggil_view('dashboard/i_keluar', $data);
+            $kolom = [
+                "tgl_keluar" => data_post('tgl_keluar'),
+                //"nama_barang" => data_post('nama_barang'),
+                "jml_barang" => data_post('jml_barang'),
+                "satuan" => data_post('satuan'),
+                //"tgl_exp" => data_post('tgl_exp'),
+                //"id_sumber" => data_post('sumber'),
+                //"id_kategori" => data_post('kategori')
+            ];
+
+            $this->mydb->input_dt($kolom, 'barang_keluar');
+            notif('Berhasil memperbarui barang masuk', true);
+            redirect(base_url('dashboard/keluar'));
+        }
     }
     public function hapus($id)
     {
