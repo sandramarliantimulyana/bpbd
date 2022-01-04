@@ -9,7 +9,7 @@
             </a>
         </li>
         <li>
-            <a href="<?= base_url('template/') ?>">
+            <a href="<?= base_url('dashboard/barang') ?>">
                 <i class="material-icons">assignment</i>
                 <span>Data Barang</span>
             </a>
@@ -39,10 +39,14 @@
             </a>
             <ul class="ml-menu">
                 <li>
-                    <a href="<?= base_url('dashboard/barang') ?>pages/ui/alerts.html">Stok Barang</a>
+                    <a href="<?= base_url('dashboard/stok') ?>">
+                        <span>Stok Barang</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="<?= base_url('dashboard/exp') ?>pages/ui/animations.html">Barang Kadaluwarsa</a>
+                    <a href="<?= base_url('dashboard/exp') ?>">
+                        <span>Barang Kadaluwarsa</span>
+                    </a>
                 </li>
             </ul>
         </li>
