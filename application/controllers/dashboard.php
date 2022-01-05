@@ -18,6 +18,11 @@ class dashboard extends CI_Controller
         $data['judul'] = "Dashboard";
         manggil_view('dashboard/index', $data);
     }
+    public function daftar()
+    {
+        $data['judul'] = "Daftar";
+        manggil_view('dashboard/daftar', $data);
+    }
     public function barang()
     {
         $data['judul'] = "Data Barang";
