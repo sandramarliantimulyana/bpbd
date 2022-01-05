@@ -2,7 +2,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <a href="" class="btn btn-primary"> Tambah Barang Keluar </a>
+                <a href="<?= base_url('dashboard/i_keluar') ?>" class="btn btn-primary"> Tambah Barang Keluar </a>
             </div>
             <div class="body">
                 <div class="table-responsive">
