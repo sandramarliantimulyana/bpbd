@@ -41,7 +41,7 @@
                         <!-- <input type="checkbox" id="remember_me" class="filled-in"> -->
                         <!-- <label for="remember_me">Remember Me</label> -->
                         <!-- <br> -->
-                        <button type="button" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
                 </form>
             </div>
         </div>
