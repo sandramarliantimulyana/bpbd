@@ -23,6 +23,7 @@ class Model_barang extends CI_Model
         $this->db->select('*');
         $this->db->from('barang_masuk');
         $this->db->join('barang_keluar', 'barang_masuk.id_barang_masuk=barang_keluar.id_barang_masuk');
+        $this->db->join('sumber', 'sumber.id_sumber=barang_masuk.id_sumber');
         return $this->db->get()->result_array();
     }
 }
