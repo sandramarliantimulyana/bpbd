@@ -59,7 +59,7 @@ class dashboard extends CI_Controller
 
         $this->form_validation->set_rules('tgl_masuk', 'Tanggal Masuk', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('jml_barangmasuk', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('tgl_exp', 'Tanggal Expired', 'trim');
         if ($this->form_validation->run() == false) {
@@ -71,7 +71,7 @@ class dashboard extends CI_Controller
             $kolom = [
                 "tgl_masuk" => data_post('tgl_masuk'),
                 "nama_barang" => data_post('nama_barang'),
-                "jml_barang" => data_post('jml_barang'),
+                "jml_barangmasuk" => data_post('jml_barangmasuk'),
                 "satuan" => data_post('satuan'),
                 "tgl_exp" => data_post('tgl_exp'),
                 "id_sumber" => data_post('sumber'),
@@ -87,7 +87,7 @@ class dashboard extends CI_Controller
     {
         $this->form_validation->set_rules('tgl_keluar', 'Tanggal Keluar', 'trim|required', ['required' => "Harus diisi"]);
         //$this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('jml_barangkeluar', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('tujuan', 'Tujuan / Posko', 'trim|required', ['required' => "Harus diisi"]);
         //$this->form_validation->set_rules('tgl_exp', 'Tanggal Expired', 'trim');
@@ -100,7 +100,7 @@ class dashboard extends CI_Controller
             $kolom = [
                 "tgl_keluar" => data_post('tgl_keluar'),
                 //"nama_barang" => data_post('nama_barang'),
-                "jml_barang" => data_post('jml_barang'),
+                "jml_barangkeluar" => data_post('jml_barangkeluar'),
                 "satuan" => data_post('satuan'),
                 //"tgl_exp" => data_post('tgl_exp'),
                 //"id_sumber" => data_post('sumber'),
@@ -125,7 +125,7 @@ class dashboard extends CI_Controller
         $data['col'] = $this->db->get_where('barang_masuk', $where)->row_array();
         $this->form_validation->set_rules('tgl_masuk', 'Tanggal Masuk', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('jml_barangmasuk', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('tgl_exp', 'Tanggal Expired', 'trim|required', ['required' => "Harus diisi"]);
         if ($this->form_validation->run() == false) {
@@ -135,7 +135,7 @@ class dashboard extends CI_Controller
             $kolom = [
                 "tgl_masuk" => data_post('tgl_masuk'),
                 "nama_barang" => data_post('nama_barang'),
-                "jml_barang" => data_post('jml_barang'),
+                "jml_barangmasuk" => data_post('jml_barangmasuk'),
                 "satuan" => data_post('satuan'),
                 "tgl_exp" => data_post('tgl_exp'),
                 "id_sumber" => data_post('sumber'),
@@ -155,6 +155,7 @@ class dashboard extends CI_Controller
     }
     public function hasil()
     {
+<<<<<<< HEAD
 
         $this->db->select_sum('jml_barang');
         $this->db->from('barang_masuk');
@@ -168,5 +169,12 @@ class dashboard extends CI_Controller
         $data['sum_hasil'] = $data['sum_masuk']['jml_barang'] - $data['sum_keluar']['jml_barang'];
         $data['judul'] = "Hasil";
         manggil_view('dashboard/hasil', $data);
+=======
+        $data['a'] =  $this->db->get('barang_masuk')->result_array();
+        // $data2 = $this->db->get('barang_keluar')->result_array();
+        // $jumlah = $data['jml_barangmasuk'] - $data2['jml_barangkeluarssssss'];
+
+        return var_dump($data['a']['jml_barang']);
+>>>>>>> 6f4b55d6e44a4fd0c20551e4e6639a206193b206
     }
 }

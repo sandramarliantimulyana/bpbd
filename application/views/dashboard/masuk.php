@@ -29,7 +29,7 @@
                                     <td><?= $t['tgl_masuk']; ?></td>
                                     <td><?= $t['nama_sumber']; ?></td>
                                     <td><?= $t['nama_barang']; ?></td>
-                                    <td><?= $t['jml_barang']; ?></td>
+                                    <td><?= $t['jml_barangmasuk']; ?></td>
                                     <td><?= $t['satuan']; ?></td>
                                     <td><?= $t['nama_kategori']; ?></td>
                                     <td><?= $t['tgl_exp']; ?></td>

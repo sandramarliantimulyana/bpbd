@@ -34,7 +34,7 @@
                                 <tr>
                                     <td><?= $t['id_keluar']; ?></td>
                                     <td><?= $t['id_masuk']; ?></td>
-                                    <td><?= $t['jml_barang']; ?></td>
+                                    <td><?= $t['jml_barangkeluar']; ?></td>
                                     <td><?= $t['tujuan']; ?></td>
                                     <td><?= $t['tgl_keluar']; ?></td>
                                     <td><?= $t['nama_sumber']; ?></td>
