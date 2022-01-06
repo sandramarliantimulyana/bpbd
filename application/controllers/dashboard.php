@@ -155,7 +155,6 @@ class dashboard extends CI_Controller
     }
     public function hasil()
     {
-<<<<<<< HEAD
 
         $this->db->select_sum('jml_barang');
         $this->db->from('barang_masuk');
@@ -169,12 +168,5 @@ class dashboard extends CI_Controller
         $data['sum_hasil'] = $data['sum_masuk']['jml_barang'] - $data['sum_keluar']['jml_barang'];
         $data['judul'] = "Hasil";
         manggil_view('dashboard/hasil', $data);
-=======
-        $data['a'] =  $this->db->get('barang_masuk')->result_array();
-        // $data2 = $this->db->get('barang_keluar')->result_array();
-        // $jumlah = $data['jml_barangmasuk'] - $data2['jml_barangkeluarssssss'];
-
-        return var_dump($data['a']['jml_barang']);
->>>>>>> 6f4b55d6e44a4fd0c20551e4e6639a206193b206
     }
 }
