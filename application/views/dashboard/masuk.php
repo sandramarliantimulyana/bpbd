@@ -6,6 +6,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
+                    <a href="<?= base_url('dashboard/jumlah_barangmasuk') ?>">ADSADHUIAW</a>
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
                             <tr>
@@ -33,10 +34,10 @@
                                     <td><?= $t['nama_kategori']; ?></td>
                                     <td><?= $t['tgl_exp']; ?></td>
                                     <td>
-                                        <a href="<?= base_url('dashboard/hapus/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                        <a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus
                                         </a>
-                                        <a href="<?= base_url('dashboard/edit/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
+                                        <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
                                             Edit
                                         </a>
                                     </td>
