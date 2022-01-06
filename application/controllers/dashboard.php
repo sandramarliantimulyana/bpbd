@@ -153,12 +153,20 @@ class dashboard extends CI_Controller
         notif('Berhasil menghapus data barang keluar', true);
         redirect(base_url('dashboard/keluar'));
     }
-    public function jumlah_barangmasuk()
+    public function hasil()
     {
-        $data =  $this->db->get('barang_masuk')->result_array();
-        // $data2 = $this->db->get('barang_keluar')->result_array();
-        // $jumlah = $data['jml_barang'] - $data2['jml_barang'];
 
-        return var_dump($data);
+        $this->db->select_sum('jml_barang');
+        $this->db->from('barang_masuk');
+        $data['sum_masuk'] = $this->db->get()->row_array();
+        //make sum from table barang_keluar
+        $this->db->select_sum('jml_barang');
+        $this->db->from('barang_keluar');
+        $data['sum_keluar'] = $this->db->get()->row_array();
+
+
+        $data['sum_hasil'] = $data['sum_masuk']['jml_barang'] - $data['sum_keluar']['jml_barang'];
+        $data['judul'] = "Hasil";
+        manggil_view('dashboard/hasil', $data);
     }
 }

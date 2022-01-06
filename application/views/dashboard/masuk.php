@@ -6,7 +6,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <a href="<?= base_url('dashboard/jumlah_barangmasuk') ?>">ADSADHUIAW</a>
+                    <a href="<?= base_url('dashboard/hasil') ?>">TEST</a>
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
                             <tr>
