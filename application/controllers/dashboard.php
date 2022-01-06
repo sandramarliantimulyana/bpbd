@@ -112,14 +112,15 @@ class dashboard extends CI_Controller
             redirect(base_url('dashboard/keluar'));
         }
     }
-    public function hapus($id)
+    public function hapus_masuk($id)
     {
         $this->mydb->del(['id_masuk' => $id], 'barang_masuk');
         notif('Berhasil menghapus data barang masuk', true);
         redirect(base_url('dashboard/masuk'));
     }
-    public function edit($id)
+    public function edit_masuk($id)
     {
+
         $where = ['id_masuk' => $id];
         $data['col'] = $this->db->get_where('barang_masuk', $where)->row_array();
         $this->form_validation->set_rules('tgl_masuk', 'Tanggal Masuk', 'trim|required', ['required' => "Harus diisi"]);
@@ -145,5 +146,19 @@ class dashboard extends CI_Controller
             notif('Berhasil memperbarui barang masuk', true);
             redirect(base_url('dashboard/masuk'));
         }
+    }
+    public function hapus_keluar($id)
+    {
+        $this->mydb->del(['id_keluar' => $id], 'barang_keluar');
+        notif('Berhasil menghapus data barang keluar', true);
+        redirect(base_url('dashboard/keluar'));
+    }
+    public function jumlah_barangmasuk()
+    {
+        $data =  $this->db->get('barang_masuk')->result_array();
+        // $data2 = $this->db->get('barang_keluar')->result_array();
+        // $jumlah = $data['jml_barang'] - $data2['jml_barang'];
+
+        return var_dump($data);
     }
 }
