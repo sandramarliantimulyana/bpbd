@@ -34,10 +34,10 @@
                             <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Nama Barang">
                         </div>
                     </div>
-                    <label for="jml_barangmasuk">Jumlah</label>
+                    <label for="jml_barang">Jumlah</label>
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" id="jml_barangmasuk" name="jml_barangmasuk" class="form-control" placeholder="Jumlah Barang Masuk">
+                            <input type="text" id="jml_barang" name="jml_barang" class="form-control" placeholder="Jumlah Barang Masuk">
                         </div>
                     </div>
                     <label for="satuan">Satuan</label>

@@ -8,7 +8,7 @@
                 </h2>
             </div>
             <div class="body">
-                <form method="post" action="<?= base_url('dashboard/edit/' . $col['id_masuk']) ?>">
+                <form method="post" action="<?= base_url('dashboard/masuk/' . $col['id_masuk']) ?>">
                     <label for="tgl_masuk">Tanggal Masuk</label>
                     <div class="form-group">
                         <div class="form-line">
@@ -36,10 +36,10 @@
                             <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Nama Barang" value="<?= $col['nama_barang'] ?>">
                         </div>
                     </div>
-                    <label for="jml_barangmasuk">Jumlah</label>
+                    <label for="jml_barang">Jumlah</label>
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" id="jml_barangmasuk" name="jml_barangmasuk" class="form-control" placeholder="Jumlah Barang Masuk" value="<?= $col['jml_barangmasuk'] ?>">
+                            <input type="text" id="jml_barang" name="jml_barang" class="form-control" placeholder="Jumlah Barang Masuk" value="<?= $col['jml_barang'] ?>">
                         </div>
                     </div>
                     <label for="satuan">Satuan</label>
@@ -69,9 +69,6 @@
                             <input type="date" id="tgl_exp" name="tgl_exp" class="form-control" placeholder="Tanggal Expired Barang" value="<?= $col['tgl_exp'] ?>">
                         </div>
                     </div>
-                    <!-- <input type=" checkbox" id="remember_me" class="filled-in"> -->
-                    <!-- <label for="remember_me">Remember Me</label> -->
-                    <!-- <br> -->
                     <button type="submit" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
                 </form>
             </div>

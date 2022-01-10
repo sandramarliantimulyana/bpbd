@@ -14,35 +14,25 @@
                                 <th>Nama Barang</th>
                                 <th>Jumlah</th>
                                 <th>Satuan</th>
-                                <th>Sumber</th>
                                 <th>Posko / Tujuan</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <!-- <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal Keluar</th>
-                                <th>Nama Barang</th>
-                                <th>Jumlah</th>
-                                <th>Satuan</th>
-                                <th>Posko / Tujuan</th>
-                            </tr>
-                        </tfoot> -->
+
                         <tbody>
                             <?php $no = 1;
                             foreach ($tampil as $t) : ?>
                                 <tr>
                                     <td><?= $t['id_keluar']; ?></td>
                                     <td><?= $t['id_masuk']; ?></td>
-                                    <td><?= $t['jml_barangkeluar']; ?></td>
+                                    <td><?= $t['jml_barang']; ?></td>
                                     <td><?= $t['tujuan']; ?></td>
                                     <td><?= $t['tgl_keluar']; ?></td>
-                                    <td><?= $t['nama_sumber']; ?></td>
                                     <td>
-                                        <a href="<? base_url('dashboard/hapus/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                        <a href="<?= base_url('dashboard/hapus_keluar/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus
                                         </a>
-                                        <a href="<? base_url('dashboard/edit/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm">
+                                        <a href="<?= base_url('dashboard/edit_keluar/' . $t['id_keluar']) ?>" class="btn btn-success btn-sm">
                                             Edit
                                         </a>
                                     </td>

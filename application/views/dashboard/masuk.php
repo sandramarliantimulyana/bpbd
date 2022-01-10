@@ -6,6 +6,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
+
                     <a href="<?= base_url('dashboard/hasil') ?>">TEST</a>
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
@@ -18,10 +19,12 @@
                                 <th>Satuan</th>
                                 <th>Kategori</th>
                                 <th>Tanggal Expired</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             <?php $no = 1;
                             foreach ($join_barangmasuk_kategori as $t) : ?>
                                 <tr>
@@ -29,10 +32,16 @@
                                     <td><?= $t['tgl_masuk']; ?></td>
                                     <td><?= $t['nama_sumber']; ?></td>
                                     <td><?= $t['nama_barang']; ?></td>
-                                    <td><?= $t['jml_barangmasuk']; ?></td>
+                                    <td><?= $t['jml_barang']; ?></td>
                                     <td><?= $t['satuan']; ?></td>
                                     <td><?= $t['nama_kategori']; ?></td>
                                     <td><?= $t['tgl_exp']; ?></td>
+                                    <td> <?php if ($t['tgl_exp'] > date('Y-m-d')) {
+                                                echo 'Berlaku';
+                                            } else {
+                                                echo 'Expired';
+                                            } ?></td>
+
                                     <td>
                                         <a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus

@@ -60,8 +60,6 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-
-
                 </ul>
             </div>
         </div>
@@ -73,12 +71,11 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<?= base_url('views/gambar') ?>images/bpbd.png" width="48" height="48" alt="User" />
+                    <img src="<?= base_url('gambar') ?>/logo.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
-
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['username'] ?></div>
+                    <!-- <div class="email"><?= $_SESSION['email'] ?></div> -->
                 </div>
             </div>
             <!-- #User Info -->
@@ -98,14 +95,11 @@
         </aside>
         <!-- #END# Left Sidebar -->
     </section>
-
     <section class="content">
         <div class="container-fluid">
-
             <div class="block-header">
                 <h2><?= $judul ?></h2>
             </div>
-
             <?= $this->session->flashdata('message'); ?>
 
             <?php $this->load->view($file) ?>
