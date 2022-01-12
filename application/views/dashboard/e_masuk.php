@@ -8,7 +8,7 @@
                 </h2>
             </div>
             <div class="body">
-                <form method="post" action="<?= base_url('dashboard/masuk/' . $col['id_masuk']) ?>">
+                <form method="post" action="<?= base_url('dashboard/edit_masuk/' . $col['id_masuk']) ?>">
                     <label for="tgl_masuk">Tanggal Masuk</label>
                     <div class="form-group">
                         <div class="form-line">
