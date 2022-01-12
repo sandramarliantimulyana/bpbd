@@ -30,23 +30,32 @@
                                 <th>Tanggal Expired</th>
                             </tr>
                         </thead>
-                        <!-- <tfoot>
-                            <tr>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Satuan</th>
-                                <th>Kategori</th>
-                                <th>Standar Minimal</th>
-                            </tr>
-                        </tfoot> -->
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                            </tr>
+                            <?php $no = 1;
+                            foreach ($tampil as $t) : ?>
+                                <tr>
+                                    <td><?= $no; ?></td>
+                                    <td><?= $t['nama_barang']; ?></td>
+                                    <td><?= $t['jml_barang']; ?></td>
+                                    <td><?= $t['satuan']; ?></td>
+                                    <td><?= $t['tgl_exp']; ?></td>
+                                    <!-- <td> <?php if ($t['tgl_exp'] > date('Y-m-d')) {
+                                                    echo 'Berlaku';
+                                                } else {
+                                                    echo 'Expired';
+                                                } ?></td> -->
+
+                                    <!-- <td>
+                                        <a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                            Hapus
+                                        </a>
+                                        <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
+                                            Edit
+                                        </a>
+                                    </td> -->
+                                </tr>
+                            <?php $no++;
+                            endforeach; ?>
                         </tbody>
                     </table>
                 </div>

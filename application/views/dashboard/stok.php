@@ -7,31 +7,36 @@
                     <th>Nama Barang</th>
                     <th>Satuan</th>
                     <th>Jumlah</th>
-                    <!-- <th>Barang Tersedia</th> -->
-                    <!-- <th>Standar Minimal</th> -->
-                    <!-- <th>Keterangan</th> -->
                 </tr>
             </thead>
-            <!-- <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Barang</th>
-                                <th>Satuan</th>
-                                <th>Jumlah Awal</th>
-                                <th>Barang Tersedia</th>
-                                <th>Standar Minimal</th>
-                                <th>Keterangan</th>
-                            </tr>
-                        </tfoot> -->
-            <!-- <tbody>
+
+            <tbody>
+                <?php $no = 1;
+                foreach ($tampil as $t) : ?>
+                    <tr>
+                        <td><?= $no; ?></td>
+                        <td><?= $t['nama_barang']; ?></td>
+                        <td><?= $t['satuan']; ?></td>
+                        <td><?= $t['jml_barang']; ?></td>
+                        <!-- <td>
+                                        <a href="<?= base_url('dashboard/hapus_keluar/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                            Hapus
+                                        </a>
+                                        <a href="<?= base_url('dashboard/edit_keluar/' . $t['id_keluar']) ?>" class="btn btn-success btn-sm">
+                                            Edit
+                                        </a>
+                                    </td> -->
+                    </tr>
+                <?php $no++;
+                endforeach; ?>
+            </tbody>
+            <tfoot>
                 <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
+                    <td colspan="5">
+                        <ul class="pagination float-right"></ul>
+                    </td>
                 </tr>
-            </tbody> -->
+            </tfoot>
         </table>
     </div>
 </div>

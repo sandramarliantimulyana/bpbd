@@ -18,15 +18,16 @@ class dashboard extends CI_Controller
         $data['judul'] = "Dashboard";
         manggil_view('dashboard/index', $data);
     }
-    public function daftar()
-    {
-        $data['judul'] = "Daftar";
-        manggil_view('dashboard/daftar', $data);
-    }
+    // public function daftar()
+    // {
+    //     $data['judul'] = "Daftar";
+    //     manggil_view('dashboard/daftar', $data);
+    // }
     public function barang()
     {
         $data['judul'] = "Data Barang";
-        //$data['tampil'] = $this->db->get('barang_keluar')->result_array();
+        $this->db->group_by('nama_barang');
+        $data['tampil'] = $this->db->get('barang_masuk')->result_array();
         manggil_view('dashboard/barang', $data);
     }
     public function masuk()
@@ -48,11 +49,14 @@ class dashboard extends CI_Controller
     public function stok()
     {
         $data['judul'] = "Stok Barang";
+        $this->db->group_by('nama_barang');
+        $data['tampil'] = $this->db->get('barang_masuk')->result_array();
         manggil_view('dashboard/stok', $data);
     }
     public function exp()
     {
         $data['judul'] = "Expired";
+        $data['tampil'] = $this->db->get('barang_masuk')->result_array();
         manggil_view('dashboard/exp', $data);
     }
     public function i_masuk()

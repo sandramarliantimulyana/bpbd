@@ -85,7 +85,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2021 <a href="javascript:void(0);">BPBD</a>.
+                    &copy; 2021 <a href="javascript:void(0);">BPBD Majalengka</a>.
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.5

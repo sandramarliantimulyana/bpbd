@@ -12,28 +12,39 @@
                                 <th>No</th>
                                 <th>Nama Barang</th>
                                 <th>Satuan</th>
-                                <th>Kategori</th>
-                                <th>Standar Minimal</th>
+                                <!-- <th>Kategori</th> -->
+                                <!-- <th>Standar Minimal</th> -->
                             </tr>
                         </thead>
-                        <!-- <tfoot>
-                            <tr>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Satuan</th>
-                                <th>Kategori</th>
-                                <th>Standar Minimal</th>
-                            </tr>
-                        </tfoot> -->
+
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                            </tr>
+                            <?php $no = 1;
+                            foreach ($tampil as $t) : ?>
+                                <tr>
+                                    <td><?= $no; ?></td>
+                                    <td><?= $t['nama_barang']; ?></td>
+                                    <td><?= $t['satuan']; ?></td>
+                                    <!-- <td><?= $t['nama_kategori']; ?></td> -->
+                                    <!-- <td><?= $t['tujuan']; ?></td> -->
+                                    <!-- <td>
+                                        <a href="<?= base_url('dashboard/hapus_keluar/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                            Hapus
+                                        </a>
+                                        <a href="<?= base_url('dashboard/edit_keluar/' . $t['id_keluar']) ?>" class="btn btn-success btn-sm">
+                                            Edit
+                                        </a>
+                                    </td> -->
+                                </tr>
+                            <?php $no++;
+                            endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

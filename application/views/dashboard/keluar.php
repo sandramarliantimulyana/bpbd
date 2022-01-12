@@ -23,11 +23,13 @@
                             <?php $no = 1;
                             foreach ($tampil as $t) : ?>
                                 <tr>
+                                    <td><?= $no; ?></td>
+                                    <td><?= $t['tgl_keluar']; ?></td>
                                     <td><?= $t['id_keluar']; ?></td>
                                     <td><?= $t['id_masuk']; ?></td>
                                     <td><?= $t['jml_barang']; ?></td>
                                     <td><?= $t['tujuan']; ?></td>
-                                    <td><?= $t['tgl_keluar']; ?></td>
+
                                     <td>
                                         <a href="<?= base_url('dashboard/hapus_keluar/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus
