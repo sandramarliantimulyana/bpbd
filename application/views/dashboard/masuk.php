@@ -11,7 +11,7 @@
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
                             <tr>
-                                <th>No</th>
+
                                 <th>Tanggal Masuk</th>
                                 <th>Sumber</th>
                                 <th>Nama Barang</th>
@@ -25,7 +25,7 @@
                         </thead>
                         <tbody>
 
-                            <?php $no = 1;
+                            <?php
                             foreach ($join_barangmasuk_kategori as $t) :
                                 if ((($t['nama_kategori'] == 'Pangan') && ($t['tgl_exp'] > date('Y-m-d')))
                                     || $t['nama_kategori'] == 'Sandang' || $t['nama_kategori'] == 'Papan'
@@ -33,7 +33,7 @@
 
                             ?>
                                     <tr>
-                                        <td><?= $no; ?></td>
+
                                         <td><?= $t['tgl_masuk']; ?></td>
                                         <td><?= $t['nama_sumber']; ?></td>
                                         <td><?= $t['nama_barang']; ?></td>
@@ -58,7 +58,7 @@
                                         </td>
                                     </tr>
                             <?php }
-                                $no++;
+
                             endforeach; ?>
 
                         </tbody>

@@ -9,7 +9,7 @@
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
                             <tr>
-                                <th>No</th>
+
                                 <th>Tanggal Keluar</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah</th>
@@ -20,10 +20,10 @@
                         </thead>
 
                         <tbody>
-                            <?php $no = 1;
+                            <?php
                             foreach ($tampil as $t) : ?>
                                 <tr>
-                                    <td><?= $no; ?></td>
+
                                     <td><?= $t['tgl_keluar']; ?></td>
                                     <td><?= $t['id_keluar']; ?></td>
                                     <td><?= $t['id_masuk']; ?></td>
@@ -39,7 +39,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                            <?php $no++;
+                            <?php
                             endforeach; ?>
                         </tbody>
                         <tfoot>
