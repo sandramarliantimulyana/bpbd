@@ -26,32 +26,39 @@
                         <tbody>
 
                             <?php $no = 1;
-                            foreach ($join_barangmasuk_kategori as $t) : ?>
-                                <tr>
-                                    <td><?= $no; ?></td>
-                                    <td><?= $t['tgl_masuk']; ?></td>
-                                    <td><?= $t['nama_sumber']; ?></td>
-                                    <td><?= $t['nama_barang']; ?></td>
-                                    <td><?= $t['jml_barang']; ?></td>
-                                    <td><?= $t['satuan']; ?></td>
-                                    <td><?= $t['nama_kategori']; ?></td>
-                                    <td><?= $t['tgl_exp']; ?></td>
-                                    <td><?php if ($t['tgl_exp'] > date('Y-m-d')) {
-                                            echo 'Berlaku';
-                                        } else {
-                                            echo 'Expired';
-                                        }
-                                        ?>
-                                    </td>
-                                    <td><a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
-                                            Hapus
-                                        </a>
-                                        <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php $no++;
+                            foreach ($join_barangmasuk_kategori as $t) :
+                                if ((($t['nama_kategori'] == 'Pangan') && ($t['tgl_exp'] > date('Y-m-d')))
+                                    || $t['nama_kategori'] == 'Sandang' || $t['nama_kategori'] == 'Papan'
+                                ) {
+
+                            ?>
+                                    <tr>
+                                        <td><?= $no; ?></td>
+                                        <td><?= $t['tgl_masuk']; ?></td>
+                                        <td><?= $t['nama_sumber']; ?></td>
+                                        <td><?= $t['nama_barang']; ?></td>
+                                        <td><?= $t['jml_barang']; ?></td>
+                                        <td><?= $t['satuan']; ?></td>
+                                        <td><?= $t['nama_kategori']; ?></td>
+                                        <td><?= $t['tgl_exp']; ?></td>
+                                        <td><?php
+                                            if ($t['tgl_exp'] > date('Y-m-d')) {
+                                                echo 'Berlaku';
+                                            } else {
+                                                echo 'Expired';
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                                Hapus
+                                            </a>
+                                            <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
+                                                Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+                            <?php }
+                                $no++;
                             endforeach; ?>
 
                         </tbody>

@@ -56,7 +56,7 @@ class dashboard extends CI_Controller
     public function exp()
     {
         $data['judul'] = "Expired";
-        $data['tampil'] = $this->db->get('barang_masuk')->result_array();
+        $data['tampil'] = $this->Model_barang->data_join();
         manggil_view('dashboard/exp', $data);
     }
     public function i_masuk()

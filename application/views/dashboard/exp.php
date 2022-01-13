@@ -27,20 +27,22 @@
                         </thead>
                         <tbody>
                             <?php $no = 1;
-                            foreach ($tampil as $t) : ?>
-                                <tr>
-                                    <td><?= $no; ?></td>
-                                    <td><?= $t['nama_barang']; ?></td>
-                                    <td><?= $t['jml_barang']; ?></td>
-                                    <td><?= $t['satuan']; ?></td>
-                                    <td><?= $t['tgl_exp']; ?></td>
-                                    <!-- <td> <?php if ($t['tgl_exp'] > date('Y-m-d')) {
-                                                    echo 'Berlaku';
-                                                } else {
-                                                    echo 'Expired';
-                                                } ?></td> -->
+                            foreach ($tampil as $t) :
+                                if ((($t['nama_kategori'] == 'Pangan') && ($t['tgl_exp'] < date('Y-m-d')))) {
+                            ?>
+                                    <tr>
+                                        <td><?= $no; ?></td>
+                                        <td><?= $t['nama_barang']; ?></td>
+                                        <td><?= $t['jml_barang']; ?></td>
+                                        <td><?= $t['satuan']; ?></td>
+                                        <td><?= $t['tgl_exp']; ?></td>
+                                        <!-- <td> <?php if ($t['tgl_exp'] > date('Y-m-d')) {
+                                                        echo 'Berlaku';
+                                                    } else {
+                                                        echo 'Expired';
+                                                    } ?></td> -->
 
-                                    <!-- <td>
+                                        <!-- <td>
                                         <a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus
                                         </a>
@@ -48,8 +50,9 @@
                                             Edit
                                         </a>
                                     </td> -->
-                                </tr>
-                            <?php $no++;
+                                    </tr>
+                            <?php }
+                                $no++;
                             endforeach; ?>
                         </tbody>
                     </table>
