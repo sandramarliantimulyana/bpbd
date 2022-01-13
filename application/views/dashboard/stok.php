@@ -17,7 +17,7 @@
                         <td><?= $no; ?></td>
                         <td><?= $t['nama_barang']; ?></td>
                         <td><?= $t['satuan']; ?></td>
-                        <td><?= $t['jml_barang']; ?></td>
+                        <td><?= $t['jml']; ?></td>
                         <!-- <td>
                                         <a href="<?= base_url('dashboard/hapus_keluar/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus
