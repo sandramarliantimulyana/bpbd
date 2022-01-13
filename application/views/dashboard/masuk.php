@@ -36,14 +36,14 @@
                                     <td><?= $t['satuan']; ?></td>
                                     <td><?= $t['nama_kategori']; ?></td>
                                     <td><?= $t['tgl_exp']; ?></td>
-                                    <td> <?php if ($t['tgl_exp'] > date('Y-m-d')) {
-                                                echo 'Berlaku';
-                                            } else {
-                                                echo 'Expired';
-                                            } ?></td>
-
-                                    <td>
-                                        <a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                    <td><?php if ($t['tgl_exp'] > date('Y-m-d')) {
+                                            echo 'Berlaku';
+                                        } else {
+                                            echo 'Expired';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             Hapus
                                         </a>
                                         <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
