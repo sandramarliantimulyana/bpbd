@@ -201,4 +201,10 @@ class dashboard extends CI_Controller
         $data['judul'] = "Hasil";
         manggil_view('dashboard/hasil', $data);
     }
+    public function hapus_exp($id)
+    {
+        $this->mydb->del(['id_masuk' => $id], 'barang_masuk');
+        notif('Berhasil menghapus data barang expired', true);
+        redirect(base_url('dashboard/exp'));
+    }
 }
