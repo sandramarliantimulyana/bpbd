@@ -42,14 +42,14 @@
                                                         echo 'Expired';
                                                     } ?></td> -->
 
-                                        <!-- <td>
-                                        <a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
-                                            Hapus
-                                        </a>
-                                        <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
+                                        <td>
+                                            <a href="<?= base_url('dashboard/hapus_exp/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                                Hapus
+                                            </a>
+                                            <!-- <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
                                             Edit
-                                        </a>
-                                    </td> -->
+                                        </a> -->
+                                        </td>
                                     </tr>
                             <?php }
 
