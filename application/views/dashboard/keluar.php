@@ -25,9 +25,9 @@
                                 <tr>
 
                                     <td><?= $t['tgl_keluar']; ?></td>
-                                    <td><?= $t['id_keluar']; ?></td>
-                                    <td><?= $t['id_masuk']; ?></td>
+                                    <td><?= $t['nama_barang']; ?></td>
                                     <td><?= $t['jml_barang']; ?></td>
+                                    <td><?= $t['satuan']; ?></td>
                                     <td><?= $t['tujuan']; ?></td>
 
                                     <td>

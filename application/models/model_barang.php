@@ -29,4 +29,9 @@ class Model_barang extends CI_Model
 
         return $this->db->get()->result_array();
     }
+    public function keluar()
+    {
+        $this->db->from('barang_keluar');
+        $this->db->join();
+    }
 }
