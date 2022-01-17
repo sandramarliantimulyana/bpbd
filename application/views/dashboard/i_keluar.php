@@ -9,28 +9,41 @@
             </div>
             <div class="body">
                 <form method="post" action="<?= base_url('dashboard/i_keluar') ?>">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Barang</th>
+                                    <th>Stok</th>
+                                    <th>Satuan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1;
+                                foreach ($tampil as $t) : ?>
+                                    <tr>
+                                        <td><?= $no; ?></td>
+                                        <td><?= $t['nama_barang']; ?></td>
+                                        <td><?= $t['stok']; ?></td>
+                                        <td><?= $t['satuan']; ?></td>
+                                    </tr>
+                                <?php $no++;
+                                endforeach; ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                     <label for="tgl_keluar">Tanggal Keluar</label>
                     <div class="form-group">
                         <div class="form-line">
                             <input type="date" id="tgl_keluar" class="form-control" placeholder="Tanggal Barang Keluar">
-                        </div>
-                    </div>
-                    <label for="nama_barang">Nama Barang</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" id="nama_barang" class="form-control" placeholder="Nama Barang">
-                        </div>
-                    </div>
-                    <label for="jml_barang">Jumlah</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" id="jml_barang" class="form-control" placeholder="Jumlah Barang">
-                        </div>
-                    </div>
-                    <label for="satuan">Satuan</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" id="satuan" class="form-control" placeholder="Satuan Barang">
                         </div>
                     </div>
                     <label for="tujuan">Posko / Tujuan</label>
