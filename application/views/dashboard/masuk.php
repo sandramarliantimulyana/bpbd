@@ -2,7 +2,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <a href="<?= base_url('dashboard/i_masuk') ?>" class="btn btn-primary"> Tambah Barang Masuk </a>
+                <a href="<?= base_url('dashboard/i_masuk') ?>" class="btn btn-primary"> <i class="material-icons">add</i> Tambah Barang Masuk
+                </a>
+
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -12,6 +14,7 @@
                         <thead>
                             <tr>
 
+                                <th>No</th>
                                 <th>Tanggal Masuk</th>
                                 <th>Sumber</th>
                                 <th>Nama Barang</th>
@@ -25,7 +28,7 @@
                         </thead>
                         <tbody>
 
-                            <?php
+                            <?php $no = 1;
                             foreach ($join_barangmasuk_kategori as $t) :
                                 if ((($t['nama_kategori'] == 'Pangan') && ($t['tgl_exp'] > date('Y-m-d')))
                                     || $t['nama_kategori'] == 'Sandang' || $t['nama_kategori'] == 'Papan'
@@ -33,7 +36,7 @@
 
                             ?>
                                     <tr>
-
+                                        <td><?= $no; ?></td>
                                         <td><?= $t['tgl_masuk']; ?></td>
                                         <td><?= $t['nama_sumber']; ?></td>
                                         <td><?= $t['nama_barang']; ?></td>
@@ -50,14 +53,15 @@
                                             ?>
                                         </td>
                                         <td><a href="<?= base_url('dashboard/hapus_masuk/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
-                                                Hapus
+                                                <i class="material-icons">delete</i>
                                             </a>
                                             <a href="<?= base_url('dashboard/edit_masuk/' . $t['id_masuk']) ?>" class="btn btn-success btn-sm">
-                                                Edit
+                                                <i class="material-icons">mode_edit</i>
                                             </a>
                                         </td>
                                     </tr>
-                            <?php }
+                            <?php $no++;
+                                }
 
                             endforeach; ?>
 
