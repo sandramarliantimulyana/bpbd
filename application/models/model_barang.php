@@ -31,7 +31,8 @@ class Model_barang extends CI_Model
     }
     public function keluar()
     {
-        $this->db->from('barang_keluar');
-        $this->db->join();
+        $this->db->select('b.*, tujuan, tgl_keluar, id_keluar')->from('barang_keluar a');
+        $this->db->join('barang_masuk b', 'a.id_masuk = b.id_masuk');
+        return $this->db->get()->result_array();
     }
 }
