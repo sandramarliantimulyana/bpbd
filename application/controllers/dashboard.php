@@ -241,6 +241,11 @@ class dashboard extends CI_Controller
         //$where = ['id_masuk' => $barang['id_masuk']];
         //$set = ['stok' => $stok];
         //$this->mydb->update_dt($where, $set, 'barang_masuk');
+        DELETE a.*, b.*
+        FROM barang_keluar a
+        LEFT JOIN 
+        ON b.barang_masuk = a.barang_keluar
+        WHERE a.id_keluar = 1
         $this->mydb->del(['id_keluar' => $id], 'barang_keluar');
         notif('Berhasil menghapus data barang keluar', true);
         redirect(base_url('dashboard/keluar'));
