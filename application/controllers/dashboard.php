@@ -241,12 +241,8 @@ class dashboard extends CI_Controller
         //$where = ['id_masuk' => $barang['id_masuk']];
         //$set = ['stok' => $stok];
         //$this->mydb->update_dt($where, $set, 'barang_masuk');
-        DELETE a.*, b.*
-        FROM barang_keluar a
-        LEFT JOIN 
-        ON b.barang_masuk = a.barang_keluar
-        WHERE a.id_keluar = 1
         $this->mydb->del(['id_keluar' => $id], 'barang_keluar');
+        $this->Model_barang->hapus_keluar();
         notif('Berhasil menghapus data barang keluar', true);
         redirect(base_url('dashboard/keluar'));
     }
@@ -368,7 +364,33 @@ class dashboard extends CI_Controller
         $data['judul'] = "Hasil";
         manggil_view('dashboard/hasil', $data);
     }
-}   
+    // public function pdf()
+    // {
+    //     $this->db->get('barang_masuk')->result();
+    //     $this->load->library('pdf');
+    //     $this->pdf->setPaper('A4', 'landscape');
+    //     $this->pdf->filename = "Laporan Barang Masuk BPBD Majalengka.pdf";
+    //     $this->pdf->load_view('dashboard/print', $data);
+    // }
+    //     function cetak_barang()
+    //   {
+    //     $data['dataBarang'] = $this->Barang_model->get_all();
+    //     $this->load->library('pdf');
+    //     $this->pdf->setPaper('A4','potrait');
+    //     $this->pdf->filename = "barang";
+    //     $this->pdf->load_view('cetak/barang',$data);
+    //   }
+    public function print_masuk()
+    {
+        $this->load->model('Model_barang');
+        $data['barang_masuk'] = $this->Model_barang->getData();
+        $this->load->library('pdf');
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-data-siswa.pdf";
+        $this->pdf->load_view('dashboard/print', $data);
+    }
+}
+
     // public function i_barang()
     // {
     //     $this->form_validation->set_rules('kode_barang', 'Kode Barang', 'trim|required', ['required' => "Harus diisi"]);

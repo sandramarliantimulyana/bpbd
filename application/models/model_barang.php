@@ -52,12 +52,23 @@ class Model_barang extends CI_Model
         $this->db->from('barang_masuk')->group_by('nama_barang');
         return $this->db->count_all_results();
     }
-    // public function hapus_keluar()
-    // {
-    // DELETE id_keluar., id_masuk.
-    //     FROM messages id_keluar
-    //     LEFT JOIN usersmessages id_masuk
-    //     ON id_masuk = id_keluar.messageid
-    //     WHERE id_masuk.messageid = 1
-    // }
+    public function hapus_keluar()
+    {
+
+        $this->db->select('*');
+        $this->db->from('barang_keluar');
+        $this->db->join('barang_masuk', 'barang_masuk.id_masuk=barang_keluar.id_keluar');
+        $query = $this->db->get();
+        return $query->result();
+        // $this->db->select('id_keluar');
+        // $this->db->from('id_masuk');
+        // $this->db->where('id', $userid);
+        // $this->db->join('user_email', 'user_email.user_id = emails.id', 'left');
+        // $query = $this->db->get();
+    }
+    function getData()
+    {
+        $barang_masuk = $this->db->get('barang_masuk');
+        return $barang_masuk->result();
+    }
 }

@@ -2,9 +2,10 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <a href="<?= base_url('dashboard/i_masuk') ?>" class="btn btn-primary"> <i class="material-icons">add</i> Tambah Barang Masuk
+                <a href="<?= base_url('dashboard/i_masuk') ?>" class="btn btn-primary"> <i class="material-icons"></i> Tambah Barang Masuk
                 </a>
-
+                <a href="<?= base_url('dashboard/print') ?>" class="btn btn-primary"> <i class="material-icons"></i> PDF
+                </a>
             </div>
             <div class="body">
                 <div class="table-responsive">
