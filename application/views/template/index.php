@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Blank Page | Bootstrap Based Admin Template - Material Design</title>
+    <title><?= $judul ?></title>
     <!-- Favicon-->
     <link rel="icon" href="<?= base_url('template/') ?>favicon.ico" type="image/x-icon">
 
@@ -21,16 +21,20 @@
     <!-- Animation Css -->
     <link href="<?= base_url('template/') ?>plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="<?= base_url('template/') ?>plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?= base_url('template/') ?>css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?= base_url('template/') ?>css/themes/all-themes.css" rel="stylesheet" />
+
 </head>
 
 <body class="theme-red">
     <!-- Page Loader -->
-    <div class="page-loader-wrapper">
+    <!-- <div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">
                 <div class="spinner-layer pl-red">
@@ -44,7 +48,7 @@
             </div>
             <p>Please wait...</p>
         </div>
-    </div>
+    </div> -->
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
@@ -56,7 +60,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="<?= base_url('template/') ?>index.html">Badan Penanggulangan Bencana Daerah (BPBD)</a>
+                <a class="navbar-brand" href="<?= base_url('template/') ?>index.html">SIM - Logistik BPBD Majalengka</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -123,11 +127,44 @@
     <!-- Waves Effect Plugin Js -->
     <script src="<?= base_url('template/') ?>plugins/node-waves/waves.js"></script>
 
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="<?= base_url('template/') ?>plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
     <!-- Custom Js -->
     <script src="<?= base_url('template/') ?>js/admin.js"></script>
+    <script>
+        $(function() {
+            $('.tabel_basic').DataTable({
+                responsive: true
+            });
+            $('.js-basic-example').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
 
+            //Exportable table
+            $('.js-exportable').DataTable({
+                dom: 'Bfrtip',
+                responsive: true,
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
     <!-- Demo Js -->
     <script src="<?= base_url('template/') ?>js/demo.js"></script>
+
 </body>
 
 </html>

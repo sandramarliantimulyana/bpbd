@@ -10,7 +10,7 @@
                 <div class="table-responsive">
 
                     <a href="<?= base_url('dashboard/hasil') ?>">TEST</a>
-                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <table class="table table-bordered table-striped table-hover tabel_basic dataTable">
                         <thead>
                             <tr>
 

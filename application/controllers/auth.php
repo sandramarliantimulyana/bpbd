@@ -30,6 +30,7 @@ class auth extends CI_Controller
                 $user = $cek_user->row_array();
 
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['id_user'] = $user['id_user'];
                 // $_SESSION['password'] = $user['password'];
 
                 notif('Selamat Anda Berhasil Login', true);
@@ -43,6 +44,7 @@ class auth extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('username');
+        $this->session->unset_userdata('id_user');
         // $this->session->unset_userdata('username');
         notif('Berhasil Logout!', true);
         redirect(base_url('auth'));

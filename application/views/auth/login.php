@@ -28,8 +28,11 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <div class="image">
+                <img class="m-l-125" src="<?= base_url('gambar') ?>/logo.png" width="60" height="60" alt="Login" />
+            </div>
+            <!-- <a href="javascript:void(0);">Admin<b>BSB</b></a> -->
+            <!-- <small>SIM - Logistik BPBD Majalengka</small> -->
         </div>
         <div class="card">
             <div class="body">

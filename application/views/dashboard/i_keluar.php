@@ -10,48 +10,55 @@
             <div class="body">
                 <form method="post" action="<?= base_url('dashboard/i_keluar') ?>">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Barang</th>
                                     <th>Stok</th>
                                     <th>Satuan</th>
+                                    <th>Jumlah</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1;
-                                foreach ($tampil as $t) : ?>
-                                    <tr>
-                                        <td><?= $no; ?></td>
-                                        <td><?= $t['nama_barang']; ?></td>
-                                        <td><?= $t['stok']; ?></td>
-                                        <td><?= $t['satuan']; ?></td>
-                                    </tr>
-                                <?php $no++;
+                                foreach ($tampil as $t) :
+                                    if ((($t['nama_kategori'] == 'Pangan') && ($t['tgl_exp'] > date('Y-m-d')))
+                                        || $t['nama_kategori'] == 'Sandang' || $t['nama_kategori'] == 'Papan'
+                                    ) {
+                                ?>
+                                        <tr>
+                                            <td><?= $no; ?></td>
+                                            <td><?= $t['nama_barang']; ?></td>
+                                            <td><?= $t['stok']; ?></td>
+                                            <td><?= $t['satuan']; ?></td>
+                                            <td class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="qty[]" class="form-control">
+                                                    <input type="hidden" name="id_masuk[]" class="form-control" value="<?= $t['id_masuk']; ?>">
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                <?php }
+                                    $no++;
                                 endforeach; ?>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <ul class="pagination float-right"></ul>
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
-                    </div>
-                    <label for="tgl_keluar">Tanggal Keluar</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="date" id="tgl_keluar" class="form-control" placeholder="Tanggal Barang Keluar">
+                        <label for="tgl_keluar">Tanggal Keluar</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="date" name="tgl_keluar" id="tgl_keluar" class="form-control" placeholder="Tanggal Barang Keluar">
+                            </div>
                         </div>
-                    </div>
-                    <label for="tujuan">Posko / Tujuan</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" id="tujuan" class="form-control" placeholder="Tujuan Barang Keluar">
+                        <label for="tujuan">Posko / Tujuan</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" id="tujuan" name="tujuan" class="form-control" placeholder="Tujuan Barang Keluar">
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
+                    </div>
                 </form>
             </div>
         </div>

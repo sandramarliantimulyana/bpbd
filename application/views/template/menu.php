@@ -9,15 +9,42 @@
             </a>
         </li>
         <li>
-            <a href="<?= base_url('dashboard/barang') ?>">
-                <i class="material-icons">assignment</i>
-                <span>Data Barang</span>
+            <a href="<?= base_url('dashboard/profil') ?>">
+                <i class="material-icons">perm_identity</i>
+                <span>Profil</span>
             </a>
         </li>
         <li>
             <a href="javascript:void(0);" class="menu-toggle">
-                <i class="material-icons">swap_calls</i>
+                <i class="material-icons">assignment</i>
                 <span>Barang</span>
+            </a>
+            <ul class="ml-menu">
+                <li>
+                    <a href="<?= base_url('dashboard/barang') ?>">
+                        <span>Data Barang</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('dashboard/sumber') ?>">
+                        <span>Data Sumber</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('dashboard/kategori') ?>">
+                        <span>Data Kategori</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- <a href="<?= base_url('dashboard/barang') ?>">
+                <i class="material-icons">assignment</i>
+                <span>Data Barang</span>
+            </a> -->
+        </li>
+        <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">swap_calls</i>
+                <span>Keluar Masuk Barang</span>
             </a>
             <ul class="ml-menu">
                 <li>

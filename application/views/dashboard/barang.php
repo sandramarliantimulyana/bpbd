@@ -6,7 +6,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <table class="table table-bordered table-striped table-hover tabel_basic dataTable">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -34,13 +34,6 @@
                             <?php $no++;
                             endforeach; ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="5">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
