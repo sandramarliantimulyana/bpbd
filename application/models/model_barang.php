@@ -52,4 +52,12 @@ class Model_barang extends CI_Model
         $this->db->from('barang_masuk')->group_by('nama_barang');
         return $this->db->count_all_results();
     }
+    // public function hapus_keluar()
+    // {
+    // DELETE id_keluar., id_masuk.
+    //     FROM messages id_keluar
+    //     LEFT JOIN usersmessages id_masuk
+    //     ON id_masuk = id_keluar.messageid
+    //     WHERE id_masuk.messageid = 1
+    // }
 }
