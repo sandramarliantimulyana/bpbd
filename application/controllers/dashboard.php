@@ -13,11 +13,48 @@ class dashboard extends CI_Controller
             redirect(base_url("auth"));
         }
     }
+    // Dashboard
     public function index()
     {
         $data['judul'] = "Dashboard";
         manggil_view('dashboard/index', $data);
     }
+    // Profil
+    public function profil()
+    {
+        $data['judul'] = "Profil";
+        $where = ['id_user' => $_SESSION['id_user']];
+        $data['tampil'] = $this->db->get_where('user', $where)->row_array();
+        manggil_view('dashboard/profil', $data);
+    }
+    public function edit_profil()
+    {
+
+        $where = ['id_user' => $_SESSION['id_user']];
+        $data['col'] = $this->db->get_where('user', $where)->row_array();
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('username', 'Username', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('curent_pass', 'Curent Password', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('confirm_pass', 'Confirm Password', 'trim|required', ['required' => "Harus diisi"]);
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Edit";
+            manggil_view('dashboard/e_profil', $data);
+        } else {
+            $kolom = [
+                "nama" => data_post('nama'),
+                "jabatan" => data_post('jabatan'),
+                "username" => data_post('username'),
+                "password" => md5(data_post('password'))
+            ];
+
+            $this->mydb->update_dt($where, $kolom, 'user');
+            notif('Berhasil memperbarui profil', true);
+            redirect(base_url('dashboard/profil'));
+        }
+    }
+    // Data Barang
     public function barang()
     {
         $data['judul'] = "Data Barang";
@@ -25,6 +62,28 @@ class dashboard extends CI_Controller
         $data['tampil'] = $this->db->get('barang_masuk')->result_array();
         manggil_view('dashboard/barang', $data);
     }
+    // Stok Barang
+    public function stok()
+    {
+        $data['judul'] = "Stok Barang";
+        $this->db->select('*, sum(stok) as jml')->group_by('nama_barang');
+        $data['tampil'] = $this->db->get('barang_masuk')->result_array();
+        manggil_view('dashboard/stok', $data);
+    }
+    // Exp Barang
+    public function exp()
+    {
+        $data['judul'] = "Expired";
+        $data['tampil'] = $this->Model_barang->data_join();
+        manggil_view('dashboard/exp', $data);
+    }
+    public function hapus_exp($id)
+    {
+        $this->mydb->del(['id_masuk' => $id], 'barang_masuk');
+        notif('Berhasil menghapus data barang expired', true);
+        redirect(base_url('dashboard/exp'));
+    }
+    // Barang Masuk
     public function masuk()
     {
         $data['judul'] = "Barang Masuk";
@@ -35,33 +94,15 @@ class dashboard extends CI_Controller
         // $this->load->view('v_mahasiswa', $data);
         // $data['tampil'] = $this->db->get('barang_masuk')->result_array();
     }
-    public function keluar()
-    {
-        $data['judul'] = "Barang Keluar";
-        $data['tampil'] = $this->Model_barang->keluar();
-        manggil_view('dashboard/keluar', $data);
-    }
-    public function stok()
-    {
-        $data['judul'] = "Stok Barang";
-        $this->db->select('*, sum(jml_barang) as jml')->group_by('nama_barang');
-        $data['tampil'] = $this->db->get('barang_masuk')->result_array();
-        manggil_view('dashboard/stok', $data);
-    }
-    public function exp()
-    {
-        $data['judul'] = "Expired";
-        $data['tampil'] = $this->Model_barang->data_join();
-        manggil_view('dashboard/exp', $data);
-    }
     public function i_masuk()
     {
 
         $this->form_validation->set_rules('tgl_masuk', 'Tanggal Masuk', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
+        // $this->form_validation->set_rules('stok', 'stok', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('tgl_exp', 'Tanggal Expired', 'trim');
+        $this->form_validation->set_rules('tgl_exp', 'Tanggal Expired', 'trim|required');
         if ($this->form_validation->run() == false) {
             $data['judul'] = "Tambah Barang";
             manggil_view('dashboard/i_masuk', $data);
@@ -72,6 +113,7 @@ class dashboard extends CI_Controller
                 "tgl_masuk" => data_post('tgl_masuk'),
                 "nama_barang" => data_post('nama_barang'),
                 "jml_barang" => data_post('jml_barang'),
+                "stok" => data_post('jml_barang'),
                 "satuan" => data_post('satuan'),
                 "tgl_exp" => data_post('tgl_exp'),
                 "id_sumber" => data_post('sumber'),
@@ -79,35 +121,8 @@ class dashboard extends CI_Controller
             ];
 
             $this->mydb->input_dt($kolom, 'barang_masuk');
-            notif('Berhasil memperbarui barang masuk', true);
+            notif('Berhasil menambahkan barang masuk', true);
             redirect(base_url('dashboard/masuk'));
-        }
-    }
-    public function i_keluar()
-    {
-        $this->form_validation->set_rules('tgl_keluar', 'Tanggal Keluar', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('tujuan', 'Tujuan / Posko', 'trim|required', ['required' => "Harus diisi"]);
-        if ($this->form_validation->run() == false) {
-            $data['judul'] = "Barang Keluar";
-            $data['tampil'] = $this->Model_barang->data_join();
-            manggil_view('dashboard/i_keluar', $data);
-        } else {
-            $data['judul'] = "Barang Keluar";
-            manggil_view('dashboard/i_keluar', $data);
-            $kolom = [
-                "tgl_keluar" => data_post('tgl_keluar'),
-                "nama_barang" => data_post('nama_barang'),
-                "jml_barang" => data_post('jml_barang'),
-                "satuan" => data_post('satuan'),
-                "tujuan" => data_post('tujuan'),
-            ];
-
-            $this->mydb->input_dt($kolom, 'barang_keluar');
-            notif('Berhasil memperbarui barang keluar', true);
-            redirect(base_url('dashboard/keluar'));
         }
     }
     public function hapus_masuk($id)
@@ -121,6 +136,8 @@ class dashboard extends CI_Controller
 
         $where = ['id_masuk' => $id];
         $data['col'] = $this->db->get_where('barang_masuk', $where)->row_array();
+        // $where = ['id_user' => $_SESSION['id_user']];
+        // $data['col'] = $this->db->get_where('user', $where)->row_array();
         $this->form_validation->set_rules('tgl_masuk', 'Tanggal Masuk', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
@@ -145,22 +162,63 @@ class dashboard extends CI_Controller
             redirect(base_url('dashboard/masuk'));
         }
     }
+    // Barang Keluar
+    public function keluar()
+    {
+        $data['judul'] = "Barang Keluar";
+        $data['tampil'] = $this->Model_barang->keluar();
+        manggil_view('dashboard/keluar', $data);
+    }
+    public function i_keluar()
+    {
+        $this->form_validation->set_rules('tgl_keluar', 'Tanggal Keluar', 'trim|required', ['required' => "Harus diisi"]);
+        $this->form_validation->set_rules('tujuan', 'Tujuan / Posko', 'trim|required', ['required' => "Harus diisi"]);
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Barang Keluar";
+            $data['tampil'] = $this->Model_barang->data_join();
+            manggil_view('dashboard/i_keluar', $data);
+        } else {
+            $id_barang = data_post('id_masuk');
+            $qty = data_post('qty');
+            $jml = count($id_barang);
+            for ($i = 0; $i < $jml; $i++) {
+                //mencari data barang masuk
+                $barang = $this->db->get_where('barang_masuk', ['id_masuk' => $id_barang[$i]])->row_array();
+                //cek qty di isi apa tdk
+                if ($qty[$i] != null) {
+                    //update kolom stok di tabel barang masuk
+                    $stok = $barang['stok'] - $qty[$i];
+                    $where = ['id_masuk' => $barang['id_masuk']];
+                    $set = ['stok' => $stok];
+                    $this->mydb->update_dt($where, $set, 'barang_masuk');
+
+                    //input barang_keluar
+                    $kolom = [
+                        "id_masuk" => $barang['id_masuk'],
+                        "tgl_keluar" => data_post('tgl_keluar'),
+                        "jml_barang_keluar" => $qty[$i],
+                        "tujuan" => data_post('tujuan'),
+                    ];
+                    $this->mydb->input_dt($kolom, 'barang_keluar');
+                }
+            }
+            notif('Berhasil menambahkan barang keluar', true);
+            redirect(base_url('dashboard/keluar'));
+        }
+    }
     public function edit_keluar($id)
     {
 
         $where = ['id_keluar' => $id];
         $data['col'] = $this->db->get_where('barang_keluar', $where)->row_array();
         $this->form_validation->set_rules('tgl_keluar', 'Tanggal Keluar', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('jml_barang', 'Jumlah Barang', 'trim|required', ['required' => "Harus diisi"]);
-        $this->form_validation->set_rules('satuan', 'Satuan', 'trim|required', ['required' => "Harus diisi"]);
         $this->form_validation->set_rules('tujuan', 'Posko / Tujuan', 'trim|required', ['required' => "Harus diisi"]);
         if ($this->form_validation->run() == false) {
             $data['judul'] = "Edit";
             manggil_view('dashboard/e_keluar', $data);
         } else {
             $kolom = [
-                "tgl_masuk" => data_post('tgl_masuk'),
+                "tgl_keluar" => data_post('tgl_keluar'),
                 "nama_barang" => data_post('nama_barang'),
                 "jml_barang" => data_post('jml_barang'),
                 "satuan" => data_post('satuan'),
@@ -176,10 +234,120 @@ class dashboard extends CI_Controller
     }
     public function hapus_keluar($id)
     {
+        //mencari data barang masuk
+        //$barang = $this->db->get_where('barang_masuk', ['id_masuk' => $id_barang[$i]])->row_array();
+        //update kolom stok di tabel barang masuk
+        //$stok = $barang['stok'] - $qty[$i];
+        //$where = ['id_masuk' => $barang['id_masuk']];
+        //$set = ['stok' => $stok];
+        //$this->mydb->update_dt($where, $set, 'barang_masuk');
         $this->mydb->del(['id_keluar' => $id], 'barang_keluar');
         notif('Berhasil menghapus data barang keluar', true);
         redirect(base_url('dashboard/keluar'));
     }
+    // Sumber Barang
+    public function sumber()
+    {
+        $data['judul'] = "Sumber Dana";
+        $data['tampil'] = $this->db->get('sumber')->result_array();
+        manggil_view('dashboard/sumber', $data);
+    }
+    public function i_sumber()
+    {
+
+        $this->form_validation->set_rules('nama_sumber', 'Sumber', 'trim|required', ['required' => "Harus diisi"]);
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Tambah Sumber";
+            manggil_view('dashboard/i_sumber', $data);
+        } else {
+            $data['judul'] = "Tambah Sumber";
+            manggil_view('dashboard/i_sumber', $data);
+            $kolom = [
+                "nama_sumber" => data_post('nama_sumber'),
+            ];
+
+            $this->mydb->input_dt($kolom, 'sumber');
+            notif('Berhasil menambahkan sumber dana', true);
+            redirect(base_url('dashboard/sumber'));
+        }
+    }
+    public function hapus_sumber($id)
+    {
+        $this->mydb->del(['id_sumber' => $id], 'sumber');
+        notif('Berhasil menghapus data sumber dana', true);
+        redirect(base_url('dashboard/sumber'));
+    }
+    public function edit_sumber($id)
+    {
+
+        $where = ['id_sumber' => $id];
+        $data['col'] = $this->db->get_where('sumber', $where)->row_array();
+        $this->form_validation->set_rules('nama_sumber', 'Sumber Dana', 'trim|required', ['required' => "Harus diisi"]);
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Edit";
+            manggil_view('dashboard/e_sumber', $data);
+        } else {
+            $kolom = [
+                "nama_sumber" => data_post('nama_sumber'),
+            ];
+
+            $this->mydb->update_dt($where, $kolom, 'sumber');
+            notif('Berhasil memperbarui sumber dana', true);
+            redirect(base_url('dashboard/sumber'));
+        }
+    }
+    // Kategori Barang
+    public function kategori()
+    {
+        $data['judul'] = "Kategori Barang";
+        $data['tampil'] = $this->db->get('kategori')->result_array();
+        manggil_view('dashboard/kategori', $data);
+    }
+    public function i_kategori()
+    {
+
+        $this->form_validation->set_rules('nama_kategori', 'kategori', 'trim|required', ['required' => "Harus diisi"]);
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Tambah Kategori";
+            manggil_view('dashboard/i_kategori', $data);
+        } else {
+            $data['judul'] = "Tambah Kategori";
+            manggil_view('dashboard/i_kategori', $data);
+            $kolom = [
+                "nama_kategori" => data_post('nama_kategori'),
+            ];
+
+            $this->mydb->input_dt($kolom, 'kategori');
+            notif('Berhasil menambahkan kategori barang', true);
+            redirect(base_url('dashboard/kategori'));
+        }
+    }
+    public function hapus_kategori($id)
+    {
+        $this->mydb->del(['id_kategori' => $id], 'kategori');
+        notif('Berhasil menghapus data kategori barang', true);
+        redirect(base_url('dashboard/kategori'));
+    }
+    public function edit_kategori($id)
+    {
+
+        $where = ['id_kategori' => $id];
+        $data['col'] = $this->db->get_where('kategori', $where)->row_array();
+        $this->form_validation->set_rules('nama_kategori', 'Kategori Barang', 'trim|required', ['required' => "Harus diisi"]);
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = "Edit";
+            manggil_view('dashboard/e_kategori', $data);
+        } else {
+            $kolom = [
+                "nama_kategori" => data_post('nama_kategori'),
+            ];
+
+            $this->mydb->update_dt($where, $kolom, 'kategori');
+            notif('Berhasil memperbarui kategori barang', true);
+            redirect(base_url('dashboard/kategori'));
+        }
+    }
+
     public function hasil()
     {
 
@@ -191,45 +359,11 @@ class dashboard extends CI_Controller
         $this->db->from('barang_keluar');
         $data['sum_keluar'] = $this->db->get()->row_array();
 
-
         $data['sum_hasil'] = $data['sum_masuk']['jml_barang'] - $data['sum_keluar']['jml_barang'];
         $data['judul'] = "Hasil";
         manggil_view('dashboard/hasil', $data);
     }
-    public function hapus_exp($id)
-    {
-        $this->mydb->del(['id_masuk' => $id], 'barang_masuk');
-        notif('Berhasil menghapus data barang expired', true);
-        redirect(base_url('dashboard/exp'));
-    }
-    public function dash_barangmasuk()
-    {
-        $this->db->select_sum('jml_barang');
-        $this->db->from('barang_masuk');
-        $data['sum_dashmasuk'] = $this->db->get()->row_array();
-
-        $data['sum_hasilmasuk'] = $data['sum_dashmasuk']['jml_barang'];
-        $data['judul'] = "Hasil Masuk";
-        manggil_view('dashboard/index', $data);
-    }
-}
-    // function dash_barangmasuk()
-    // {
-    //     $this->db->select_sum('jml_barang');
-    //     $this->db->from('barang_masuk');
-    //     $data['sum_masuk'] = $this->db->get()->row_array();
-
-    //     $data['sum_hasil'] = $data['sum_masuk']['jml_barang'];
-    //     $data['judul'] = "Dashoard Barang Masuk";
-    //     manggil_view('dashboard/indexs', $data);
-
-        //contoh kayat
-        // date_default_timezone_set('Asia/Jakarta');
-        // $tgl = date("Y-m");
-        // $this->db->select('sum(pm_total) as total');
-        // return  $this->db->get_where('pemasukan', ['left(`pemasukan`.`pm_tanggal`,7)' => $tgl])->row_array();
-    
-    
+}   
     // public function i_barang()
     // {
     //     $this->form_validation->set_rules('kode_barang', 'Kode Barang', 'trim|required', ['required' => "Harus diisi"]);
