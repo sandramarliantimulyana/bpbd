@@ -7,26 +7,32 @@
             <div class="body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover tabel_basic dataTable">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Jabatan</th>
-                                <th>Username</th>
-                                <!-- <th>Email</th> -->
-                            </tr>
-                        </thead>
-
                         <tbody>
                             <tr>
-
+                                <th>Nama</th>
                                 <td><?= $tampil['nama']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Jabatan</th>
                                 <td><?= $tampil['jabatan']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Username</th>
                                 <td><?= $tampil['username']; ?></td>
+                            </tr>
+                            <!-- <th>Email</th> -->
+                            </tr>
+
+                            <tr>
+
+                                <!-- <td><?= $tampil['nama']; ?></td>
+                                <td><?= $tampil['jabatan']; ?></td>
+                                <td><?= $tampil['username']; ?></td> -->
                                 <td>
                                     <!-- <a href="<?= base_url('dashboard/hapus_sumber/' . $tampil['id_sumber']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             <i class="material-icons">delete</i>
                                         </a> -->
-                                    <a href="<?= base_url('dashboard/edit_profil/' . $tampil['id_user']) ?>" class="btn btn-success btn-sm">
+                                    <a href="<?= base_url('dashboard/edit_profil/' . $tampil['id_user']) ?>" class="btn btn-success btn-sm m-t-20 waves-effect">
                                         <i class="material-icons">mode_edit</i>
                                     </a>
                                 </td>
@@ -36,11 +42,6 @@
 
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="5">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
                         </tfoot>
                     </table>
                 </div>

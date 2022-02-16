@@ -4,7 +4,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    Kategori Dana
+                    Kategori Barang
                 </h2>
             </div>
             <div class="body">

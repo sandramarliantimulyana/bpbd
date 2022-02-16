@@ -2,7 +2,10 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <a href="<?= base_url('dashboard/i_keluar') ?>" class="btn btn-primary"> <i class="mdi mdi-plus"></i> Tambah Barang Keluar </a>
+                <a href="<?= base_url('dashboard/i_keluar') ?>" class="btn btn-primary"> <i class="material-icons">add</i> Tambah Barang Keluar
+                </a>
+                <a href="<?= base_url('dashboard/print_keluar') ?>" class="btn btn-primary"> <i class="material-icons">print</i> Cetak PDF
+                </a>
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -33,21 +36,18 @@
                                         <a href="<?= base_url('dashboard/hapus_keluar/' . $t['id_keluar']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                             <i class="material-icons">delete</i>
                                         </a>
-                                        <!-- <a href="<?= base_url('dashboard/edit_keluar/' . $t['id_keluar']) ?>" class="btn btn-success btn-sm">
-                                            <i class="material-icons">mode_edit</i>
-                                        </a> -->
                                     </td>
                                 </tr>
                             <?php $no++;
                             endforeach; ?>
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <td colspan="5">
                                     <ul class="pagination float-right"></ul>
                                 </td>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>

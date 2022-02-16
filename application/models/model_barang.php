@@ -39,7 +39,7 @@ class Model_barang extends CI_Model
     //dashboard
     public function dash_barangmasuk()
     {
-        $this->db->select_sum('stok')->from('barang_masuk');
+        $this->db->select_sum('jml_barang')->from('barang_masuk');
         return $this->db->get()->row_array();
     }
     public function dash_barangkeluar()
@@ -52,23 +52,12 @@ class Model_barang extends CI_Model
         $this->db->from('barang_masuk')->group_by('nama_barang');
         return $this->db->count_all_results();
     }
-    public function hapus_keluar()
-    {
 
-        $this->db->select('*');
-        $this->db->from('barang_keluar');
-        $this->db->join('barang_masuk', 'barang_masuk.id_masuk=barang_keluar.id_keluar');
-        $query = $this->db->get();
-        return $query->result();
-        // $this->db->select('id_keluar');
-        // $this->db->from('id_masuk');
-        // $this->db->where('id', $userid);
-        // $this->db->join('user_email', 'user_email.user_id = emails.id', 'left');
-        // $query = $this->db->get();
-    }
-    function getData()
-    {
-        $barang_masuk = $this->db->get('barang_masuk');
-        return $barang_masuk->result();
-    }
+    // function getData()
+    // {
+    //     $this->db->from('barang_masuk');
+    //     $this->db->join('kategori', 'kategori.id_kategori=barang_masuk.id_kategori');
+    //     $this->db->join('sumber', 'sumber.id_sumber=barang_masuk.id_sumber');
+    //     return $this->db->get()->result_array();
+    // }
 }

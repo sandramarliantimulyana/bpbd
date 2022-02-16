@@ -34,13 +34,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 $no++;
                 echo "<tr>";
                 echo "<td><center>" . $no . "</center></td>";
-                echo "<td>" . $data->tgl_masuk . "</td>";
-                echo "<td>" . $data->nama_sumber . "</td>";
-                echo "<td>" . $data->nama_barang . "</td>";
-                echo "<td>" . $data->jml_barang . "</td>";
-                echo "<td>" . $data->satuan . "</td>";
-                echo "<td>" . $data->nama_kategori . "</td>";
-                echo "<td>" . $data->tgl_exp . "</td>";
+                echo "<td>" . $data['tgl_masuk'] . "</td>";
+                echo "<td>" . $data['nama_sumber'] . "</td>";
+                echo "<td>" . $data['nama_barang'] . "</td>";
+                echo "<td>" . $data['jml_barang'] . "</td>";
+                echo "<td>" . $data['satuan'] . "</td>";
+                echo "<td>" . $data['nama_kategori'] . "</td>";
+                echo "<td>" . $data['tgl_exp'] . "</td>";
                 echo "</tr>";
             }
             ?>

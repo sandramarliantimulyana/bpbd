@@ -29,27 +29,18 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?= base_url('template/') ?>css/themes/all-themes.css" rel="stylesheet" />
+    <!-- Jquery Core Js -->
+    <script src="<?= base_url('template/') ?>plugins/jquery/jquery.min.js"></script>
+
+    <!-- toastr -->
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/toastr/build/toastr.min.css">
+    <script src="<?= base_url() ?>vendor/toastr/build/toastr.min.js"></script>
+
+
 
 </head>
 
 <body class="theme-red">
-    <!-- Page Loader -->
-    <!-- <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div> -->
-    <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
@@ -74,12 +65,14 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
+
                 <div class="image">
-                    <img src="<?= base_url('gambar') ?>/logo.png" width="48" height="48" alt="User" />
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['username'] ?></div>
-                    <!-- <div class="email"><?= $_SESSION['email'] ?></div> -->
+                    <img src="<?= base_url('gambar') ?>/logo.png" width="60" height="60" alt="User" />
+                    <!-- </div> -->
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['username'] ?></div>
+                        <!-- <div class="email"><?= $_SESSION['email'] ?></div> -->
+                    </div>
                 </div>
             </div>
             <!-- #User Info -->
@@ -89,7 +82,8 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2021 <a href="javascript:void(0);">BPBD Majalengka</a>.
+                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    <!-- &copy; 2021 <a href="javascript:void(0);">BPBD Majalengka</a>. -->
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.5
@@ -104,7 +98,7 @@
             <div class="block-header">
                 <h2><?= $judul ?></h2>
             </div>
-            <?= $this->session->flashdata('message'); ?>
+            <!--  -->
 
             <?php $this->load->view($file) ?>
 
@@ -112,8 +106,6 @@
         </div>
     </section>
 
-    <!-- Jquery Core Js -->
-    <script src="<?= base_url('template/') ?>plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
     <script src="<?= base_url('template/') ?>plugins/bootstrap/js/bootstrap.js"></script>
@@ -165,6 +157,13 @@
     <!-- Demo Js -->
     <script src="<?= base_url('template/') ?>js/demo.js"></script>
 
+    <?php if (isset($_SESSION['notifikasi'])) { ?>
+        <script type="text/javascript">
+            toastr.options.closeButton = true;
+            toastr.<?= $_SESSION['warna'] ?>('<?= $_SESSION['judul'] ?>',
+                '<?= $_SESSION['pesan'] ?> ');
+        </script>
+    <?php } ?>
 </body>
 
 </html>

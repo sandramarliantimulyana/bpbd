@@ -19,4 +19,16 @@ class mydb extends CI_Model
         $this->db->where($where);
         $this->db->delete($table);
     }
+    function getAllmasuk()
+    {
+        return  $this->db->get_where('barang_masuk', ['left(`barang_masuk`.`tgl_masuk`,7)'])->result_array();
+    }
+    function getAllkeluar()
+    {
+        return  $this->db->get_where('barang_keluar', ['left(`barang_keluar`.`tgl_keluar`,7)'])->result_array();
+    }
+    function getAllstok()
+    {
+        return  $this->db->get_where('barang_masuk', ['left(`barang_masuk`.`tgl_masuk`,7)'])->result_array();
+    }
 }

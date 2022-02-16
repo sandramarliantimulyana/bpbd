@@ -10,7 +10,7 @@
             <div class="body">
                 <form method="post" action="<?= base_url('dashboard/i_keluar') ?>">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <table class="table table-bordered table-striped table-hover tabel_basic dataTable">
                             <thead>
                                 <tr>
                                     <th>No</th>

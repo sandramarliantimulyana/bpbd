@@ -27,13 +27,13 @@
                             <input type="text" id="username" name="username" class="form-control" placeholder="Masukan Username" value="<?= $col['username'] ?>">
                         </div>
                     </div>
-                    <label for="nama_sumber">Current Password</label>
+                    <label for="nama_sumber">Password</label>
                     <div class="form-group">
                         <div class="form-line">
                             <input type="text" id="curent_pass" name="curent_pass" class="form-control" placeholder="Password Sekarang">
                         </div>
                     </div>
-                    <label for="nama_sumber">Password</label>
+                    <!-- <label for="nama_sumber">Password</label>
                     <div class="form-group">
                         <div class="form-line">
                             <input type="text" id="password" name="password" class="form-control" placeholder="Password Baru">
@@ -44,8 +44,8 @@
                         <div class="form-line">
                             <input type="text" id="confirm_pass" name="confirm_pass" class="form-control" placeholder="Konfirmasi Password Baru">
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">SIMPAN</button>
+                    </div> -->
+                    <button type="submit" class="btn bg-blue btn-primary m-t-15 waves-effect"> <i class="material-icons"></i>SIMPAN</button>
                 </form>
             </div>
         </div>

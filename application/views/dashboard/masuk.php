@@ -2,15 +2,16 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <a href="<?= base_url('dashboard/i_masuk') ?>" class="btn btn-primary"> <i class="material-icons"></i> Tambah Barang Masuk
+                <a href="<?= base_url('dashboard/i_masuk') ?>" class="btn btn-primary"> <i class="material-icons">add</i> Tambah Barang Masuk
                 </a>
-                <a href="<?= base_url('dashboard/print') ?>" class="btn btn-primary"> <i class="material-icons"></i> PDF
+                <a href="<?= base_url('dashboard/print_masuk') ?>" class="btn btn-primary"> <i class="material-icons">print</i> Cetak PDF
                 </a>
+                <!-- <button type="button" class="btn bg-red waves-effect">
+                                    <i class="material-icons">print</i>
+                                    <span>PRINT...</span> -->
             </div>
             <div class="body">
                 <div class="table-responsive">
-
-                    <a href="<?= base_url('dashboard/hasil') ?>">TEST</a>
                     <table class="table table-bordered table-striped table-hover tabel_basic dataTable">
                         <thead>
                             <tr>
@@ -67,13 +68,13 @@
                             endforeach; ?>
 
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <td colspan="5">
                                     <ul class="pagination float-right"></ul>
                                 </td>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>

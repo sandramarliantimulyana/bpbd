@@ -2,20 +2,13 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>
-                    Expired
-                </h2>
-                <ul class="header-dropdown m-r--5">
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </li>
-                </ul>
+                <!-- <a href="<?= base_url('dashboard/i_keluar') ?>" class="btn btn-primary"> Tambah Barang Keluar </a> -->
+                <!-- <a href="<?= base_url('dashboard/print_stok') ?>" class="btn btn-primary"> <i class="material-icons"></i> PDF
+                </a> -->
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <table class="table table-bordered table-striped table-hover tabel_basic dataTable">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -23,6 +16,7 @@
                                 <th>Jumlah</th>
                                 <th>Satuan</th>
                                 <th>Tanggal Expired</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +35,6 @@
                                                     } else {
                                                         echo 'Expired';
                                                     } ?></td> -->
-
                                         <td>
                                             <a href="<?= base_url('dashboard/hapus_exp/' . $t['id_masuk']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                 Hapus
@@ -53,9 +46,15 @@
                                     </tr>
                             <?php $no++;
                                 }
-
                             endforeach; ?>
                         </tbody>
+                        <!-- <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>

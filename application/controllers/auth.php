@@ -23,20 +23,21 @@ class auth extends CI_Controller
             $this->load->view('auth/login');
         } else {
             $username = data_post('username');
-            $password = data_post('password');
+            $password = md5(data_post('password'));
 
-            $cek_user = $this->db->get_where('user', ['username' => $username, 'password' => md5($password)]);
+            $cek_user = $this->db->get_where('user', ['username' => $username, 'password' => $password]);
             if ($cek_user->num_rows() > 0) {
                 $user = $cek_user->row_array();
 
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['id_user'] = $user['id_user'];
+                $_SESSION['notifikasi'] = 1;
                 // $_SESSION['password'] = $user['password'];
 
-                notif('Selamat Anda Berhasil Login', true);
+                $this->Global_model->notifikasi("Anda Berhasil Login..", 'Berhasil', 'success');
                 redirect(base_url('dashboard'));
             } else {
-                notif('Username atau Password Salah!', false);
+                $this->Global_model->notifikasi("Gagal", 'Anda Gagal Login..', 'error');
                 redirect(base_url('auth'));
             }
         }
@@ -45,8 +46,7 @@ class auth extends CI_Controller
     {
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('id_user');
-        // $this->session->unset_userdata('username');
-        notif('Berhasil Logout!', true);
+        $this->Global_model->notifikasi("Anda Berhasil Logout..", 'Berhasil', 'success');
         redirect(base_url('auth'));
     }
 }

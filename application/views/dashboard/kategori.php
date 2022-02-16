@@ -2,7 +2,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <a href="<?= base_url('dashboard/i_kategori') ?>" class="btn btn-primary"> <i class="mdi mdi-plus"></i> Tambah Kategori Barang </a>
+                <a href="<?= base_url('dashboard/i_kategori') ?>" class="btn btn-primary"> <i class="material-icons"></i> Tambah Kategori Barang </a>
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -33,13 +33,13 @@
                             <?php $no++;
                             endforeach; ?>
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <td colspan="5">
                                     <ul class="pagination float-right"></ul>
                                 </td>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>
