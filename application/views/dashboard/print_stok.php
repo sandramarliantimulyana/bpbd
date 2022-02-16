@@ -67,7 +67,7 @@
                         <tr>
                             <th scope="row"><?= $no ?></th>
                             <td><?= $data['nama_barang']; ?></td>
-                            <td><?= $data['jml_barang_keluar']; ?></td>
+                            <td><?= $data['stok']; ?></td>
                             <td><?= $data['satuan']; ?></td>
                         </tr>
                     <?php
